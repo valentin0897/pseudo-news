@@ -1,0 +1,34 @@
+header
+    width: 100%
+    display: flex
+    justify-content: center
+    border-bottom: 0.3rem dashed $secondary-color
+
+    .header-container
+        width: $container-size
+        display: flex
+        position: relative
+
+        .title-wrapper
+            position: absolute
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%)
+
+            .title
+
+                &:visited
+                    color: $main-font-color
+
+        .links
+            display: flex
+
+            .link-wrapper
+                .link
+                    color: $main-font-color
+                    padding: 20px 10px
+                    display: flex
+                    text-transform: capitalize
+
+                    &:hover
+                        color: $main-font-hover

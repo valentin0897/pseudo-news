@@ -1,0 +1,13 @@
+<header>
+    <div class="header-container">
+
+        <ul class="links">
+            <li *ngFor="let link of links" class="link-wrapper"><a class="link" routerLink="{{link.href}}">{{link.title}}</a></li>
+        </ul>
+
+        <div class="title-wrapper">
+            <a class="title" routerLink="">{{title}}</a>
+        </div>
+
+    </div>
+</header>
