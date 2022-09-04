@@ -1,0 +1,7 @@
+<h1 class="page-title">{{title}}</h1>
+<div class="news-list">
+    <app-news-item *ngFor="let newsItem of newsList; let i = index"
+     [newsItem]="newsItem" [ngClass]="{'large-news': i < 3}">
+
+    </app-news-item>
+</div>
