@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.links = [new Link("Health", "health"), new Link("Show business", "business"), new Link("Events", "events")];
+    this.links = [new Link("Health", "health"), new Link("Show business", "business"), new Link("Events", "event")];
     this.title = "News of the week"
   }
 

@@ -7,7 +7,7 @@ import { NewsItem } from 'src/app/models/newsItem';
   host: {'class': 'news-item-wrapper'}
 })
 export class NewsItemComponent implements OnInit {
-  @Input() newsItem: NewsItem = new NewsItem("","","","")
+  @Input() newsItem: NewsItem = new NewsItem(0,"","","","", "")
 
   constructor() { }
 

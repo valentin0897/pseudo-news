@@ -1,9 +1,9 @@
 export class Link {
     title: string
-    href: string
+    tag: string
 
-    constructor(title: string, href: string){
+    constructor(title: string, tag: string){
         this.title = title
-        this.href = href
+        this.tag = tag
     }
 }

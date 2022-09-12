@@ -1,27 +1,52 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { NewsItem } from 'src/app/models/newsItem';
+import { NewsService } from 'src/app/services/news.service';
 
 @Component({
   selector: 'app-main-news',
   templateUrl: './main-news.component.html',
 })
 export class MainNewsComponent implements OnInit {
-  title: string = ""
-  newsList: NewsItem[] = [
-  new NewsItem("Очень важная новость 1", "https://placehold.jp/3d4070/ffffff/500x281.png", "8 hours ago", ""), 
-  new NewsItem("Очень важная новость 2", "https://placehold.jp/3d4070/ffffff/500x281.png", "14 hours ago", ""),
-  new NewsItem("Очень важная новость 3", "https://placehold.jp/3d4070/ffffff/500x281.png", "15 hours ago", ""),
-  new NewsItem("Очень важная новость 4", "https://placehold.jp/3d4070/ffffff/500x281.png", "9 hours ago", ""),
-  new NewsItem("Очень важная новость 5", "https://placehold.jp/3d4070/ffffff/500x281.png", "13 hours ago", ""),
-  new NewsItem("Очень важная новость 6", "https://placehold.jp/3d4070/ffffff/500x281.png", "3 hours ago", ""),
-  new NewsItem("Очень важная новость 7", "https://placehold.jp/3d4070/ffffff/500x281.png", "11 hours ago", ""),
+  activeTag: string = ""
+  title: string = "Main news"
+  newsList: NewsItem[] = []
 
-]
-
-  constructor() { }
+  constructor(public newsService: NewsService, 
+              private route: ActivatedRoute, 
+              private router: Router) { }
 
   ngOnInit(): void {
-    this.title = "Main news"
+    this.route.queryParams.subscribe(params => {
+      this.activeTag = params["tag"] ?? ""
+    })
+
+    this.router.events.forEach((event) => {
+      if(event instanceof NavigationStart) {
+        this.updateNews()
+      }
+    })
+
+    this.getNews()
   }
 
+  getNews() {
+    this.newsService.getNews() 
+      .subscribe((data: any) => {
+        if (this.activeTag != ""){
+          for (const news of data["news"] as NewsItem[]){
+            if (news.tag == this.activeTag) {
+              this.newsList.push(news)
+            } 
+          }
+        } else {
+        this.newsList = data["news"]
+        }
+      })
+  }
+
+  updateNews() {
+    this.newsList = []
+    this.getNews()
+  }
 }

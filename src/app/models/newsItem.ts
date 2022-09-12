@@ -1,13 +1,17 @@
 export class NewsItem {
+    id: number
     title: string
     imgUrl: string
     published: string
-    refUrl: string
+    text: string
+    tag: string
 
-    constructor(title: string, imgUrl: string, published: string, refUrl: string){
+    constructor(id: number, title: string, imgUrl: string, published: string, text: string, tag: string){
+        this.id = id
         this.title = title
         this.imgUrl = imgUrl
         this.published = published
-        this.refUrl = refUrl
+        this.text = text
+        this.tag = tag
     }
 }

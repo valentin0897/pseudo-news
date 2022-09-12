@@ -1,0 +1,11 @@
+{
+    "news": [
+        {"id": 1, "title": "Очень важная новость 1", "imgUrl": "https://placehold.jp/3d4070/ffffff/500x281.png", "tag": "business", "published": "8 hours ago", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla magna nunc, scelerisque non dolor ut, scelerisque pellentesque diam. Cras id enim tempor, ornare quam et, tempus mauris. Nunc quis sem mauris. Nam eu purus ut erat varius posuere. Nunc posuere ullamcorper ligula, congue pharetra tellus cursus at. Praesent aliquet mi a turpis molestie, sed egestas ipsum sodales. Suspendisse in nulla tortor. Phasellus fringilla orci vitae pulvinar accumsan. Proin auctor, dolor sed luctus eleifend, nisi justo bibendum dui, vitae molestie orci lorem id dui. Cras ut nulla id massa pellentesque suscipit. Class aptent taciti sociosqu ad litora torquent per conubia nostra."},
+        {"id": 2, "title": "Очень важная новость 2", "imgUrl": "https://placehold.jp/3d4070/ffffff/500x281.png", "tag": "event", "published": "6 hours ago", "text": "news_text_2"},
+        {"id": 3, "title": "Очень важная новость 3", "imgUrl": "https://placehold.jp/3d4070/ffffff/500x281.png", "tag": "business", "published": "14 hours ago", "text": "news_text_3"},
+        {"id": 4, "title": "Очень важная новость 4", "imgUrl": "https://placehold.jp/3d4070/ffffff/500x281.png", "tag": "business", "published": "23 hours ago", "text": "news_text_4"},
+        {"id": 5, "title": "Очень важная новость 5", "imgUrl": "https://placehold.jp/3d4070/ffffff/500x281.png", "tag": "event", "published": "2 hours ago", "text": "news_text_5"},
+        {"id": 6, "title": "Очень важная новость 6", "imgUrl": "https://placehold.jp/3d4070/ffffff/500x281.png", "tag": "business", "published": "1 hours ago", "text": "news_text_6"},
+        {"id": 7, "title": "Очень важная новость 7", "imgUrl": "https://placehold.jp/3d4070/ffffff/500x281.png", "tag": "health", "published": "20 hours ago", "text": "news_text_7"}
+    ]
+}
