@@ -1,6 +1,10 @@
 <h1 class="page-title">{{title}}</h1>
 <div class="news-list">
     <app-news-item *ngFor="let newsItem of newsList; let i = index"
-     [newsItem]="newsItem" [ngClass]="{'large-news': i < 3}">
+     [newsItem]="newsItem" [ngClass]="i < 3 ? 'large' : 'medium'">
     </app-news-item>
+</div>
+<div infinite-scroll (scrolled)="onScroll()" [infiniteScrollDistance]="0.5" class="secondary-news-list">
+    <app-news-item [ngClass]="isSmallNews(i) ? 'small' : 'medium'" *ngFor="let newsItem of secondaryNewsList; let i = index"
+        [newsItem]="newsItem"></app-news-item>
 </div>

@@ -11,6 +11,10 @@ export class MainNewsComponent implements OnInit {
   activeTag: string = ""
   title: string = "Main news"
   newsList: NewsItem[] = []
+  secondaryNewsList: NewsItem[] = []
+
+  numberSmallNews = 8
+  numberMediumNews = 4
 
   constructor(public newsService: NewsService, 
               private route: ActivatedRoute, 
@@ -42,11 +46,33 @@ export class MainNewsComponent implements OnInit {
         } else {
         this.newsList = data["news"]
         }
+
+        this.getSecondaryNews()
       })
   }
 
   updateNews() {
     this.newsList = []
     this.getNews()
+  }
+
+  getSecondaryNews() {
+    this.secondaryNewsList.push(...this.newsList.slice(0, 4))
+    console.log(this.secondaryNewsList)
+  }
+
+  isSmallNews(index: number) {
+    let pageNewsTotal = this.numberMediumNews + this.numberSmallNews
+
+    if (index % pageNewsTotal < this.numberSmallNews){
+      return true
+    } 
+    return false
+  }
+
+  onScroll() {
+    this.getSecondaryNews()
+    console.log("Scrolled")
+
   }
 }

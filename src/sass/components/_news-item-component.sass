@@ -1,19 +1,37 @@
-.news-item
-    display: flex
-    flex-direction: column
-    border: 1px solid $secondary-color
+.news-item-wrapper
 
-    &:visited
-        color: $main-font-color
+    .news-item
+        margin: 10px 10px
+        display: flex
+        flex-direction: column
+        border: 1px solid $secondary-color
 
-        
-    &:hover
-        color: $main-font-hover
+        &:visited
+            color: $main-font-color
 
+            
+        &:hover
+            color: $main-font-hover
 
+        .info
+            padding: 15px 20px 25px 20px
 
-    .info
-        padding: 15px 20px 25px 20px
+            .title
+                margin-bottom: 10px
 
-        .title
-            margin-bottom: 10px
+.small
+    width: 50%
+
+    .news-item
+        display: flex
+        flex-direction: row
+
+        .cover
+            width: 120px
+            height: 120px
+
+.medium
+    width: 25%
+
+.large
+    width: 33.3%
