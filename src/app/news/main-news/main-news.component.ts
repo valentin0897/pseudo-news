@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
+import { Observable, switchMap } from 'rxjs';
 import { NewsItem } from 'src/app/models/newsItem';
 import { NewsService } from 'src/app/services/news.service';
 import { isSmallNews } from 'src/app/utilities/utility';
@@ -9,12 +10,13 @@ import { isSmallNews } from 'src/app/utilities/utility';
   templateUrl: './main-news.component.html',
 })
 export class MainNewsComponent implements OnInit {
+  newsList$!: Observable<NewsItem[]>
+
   activeTag: string = ""
   title: string = "Main news"
-  newsList: NewsItem[] = []
   secondaryNewsList: NewsItem[] = []
-  isSmallNews = isSmallNews
 
+  isSmallNews = isSmallNews
   numberSmallNews = 8
   numberMediumNews = 4
 
@@ -23,46 +25,20 @@ export class MainNewsComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.activeTag = params["tag"] ?? ""
-    })
+    this.route.queryParams.subscribe(params => this.activeTag = params["tag"])
 
-    this.router.events.forEach((event) => {
-      if(event instanceof NavigationStart) {
-        this.updateNews()
-      }
-    })
-
-    this.getNews()
-  }
-
-  getNews() {
-    this.newsService.getNews() 
-      .subscribe((data: any) => {
-        if (this.activeTag != ""){
-          for (const news of data["news"] as NewsItem[]){
-            if (news.tag == this.activeTag) {
-              this.newsList.push(news)
-            } 
-          }
-        } else {
-        this.newsList = data["news"]
-        }
-
-        this.getSecondaryNews()
+    this.newsList$ = this.route.paramMap.pipe(
+      switchMap(() =>{
+        return this.newsService.getNews()
       })
-  }
+    )
 
-  updateNews() {
-    this.newsList = []
-    this.getNews()
-  }
-
-  getSecondaryNews() {
-    this.secondaryNewsList.push(...this.newsList.slice(0, 4))
+    this.onScroll() // Only for mocking
   }
 
   onScroll() {
-    this.getSecondaryNews()
+    this.newsService.getNews().subscribe(
+      (news) => {for (let newsItem of news) this.secondaryNewsList.push(newsItem)}
+    )
   }
 }
