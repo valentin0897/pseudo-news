@@ -10,6 +10,9 @@ export class NewsService {
   constructor(private http: HttpClient) { }
   newsUrl = 'assets/database.json'
 
+  newsList: NewsItem[] = []
+  secondaryNewsList: NewsItem[] = []
+
   getNews() {
    return this.http.get<NewsItem[]>(this.newsUrl) 
   }

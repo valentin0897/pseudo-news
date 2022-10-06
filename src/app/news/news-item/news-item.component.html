@@ -1,4 +1,4 @@
-<a routerLink="news/{{newsItem.id}}" class="news-item">
+<a [routerLink]="['/news', newsItem.id]" class="news-item">
     <img src="{{newsItem.imgUrl}}" alt="NewsCover" class="cover">
     <div class="info">
         <h3 class="title">{{newsItem.title}}</h3>

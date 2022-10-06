@@ -5,6 +5,6 @@
     </app-news-item>
 </div>
 <div infinite-scroll (scrolled)="onScroll()" [infiniteScrollDistance]="0.5" class="secondary-news-list">
-    <app-news-item [ngClass]="isSmallNews(i) ? 'small' : 'medium'" *ngFor="let newsItem of secondaryNewsList; let i = index"
+    <app-news-item [ngClass]="isSmallNews(i, this.numberMediumNews, this.numberSmallNews) ? 'small' : 'medium'" *ngFor="let newsItem of secondaryNewsList; let i = index"
         [newsItem]="newsItem"></app-news-item>
 </div>

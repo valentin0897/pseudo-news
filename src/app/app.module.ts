@@ -9,6 +9,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { MainNewsComponent } from './news/main-news/main-news.component';
 import { NewsItemComponent } from './news/news-item/news-item.component';
 import { NewsDetailsComponent } from './news/news-details/news-details.component';
+import { PageNotFoundComponent} from './shared/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +18,13 @@ import { NewsDetailsComponent } from './news/news-details/news-details.component
     MainNewsComponent,
     NewsItemComponent,
     NewsDetailsComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

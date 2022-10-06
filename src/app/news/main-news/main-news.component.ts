@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { NewsItem } from 'src/app/models/newsItem';
 import { NewsService } from 'src/app/services/news.service';
+import { isSmallNews } from 'src/app/utilities/utility';
 
 @Component({
   selector: 'app-main-news',
@@ -12,6 +13,7 @@ export class MainNewsComponent implements OnInit {
   title: string = "Main news"
   newsList: NewsItem[] = []
   secondaryNewsList: NewsItem[] = []
+  isSmallNews = isSmallNews
 
   numberSmallNews = 8
   numberMediumNews = 4
@@ -58,21 +60,9 @@ export class MainNewsComponent implements OnInit {
 
   getSecondaryNews() {
     this.secondaryNewsList.push(...this.newsList.slice(0, 4))
-    console.log(this.secondaryNewsList)
-  }
-
-  isSmallNews(index: number) {
-    let pageNewsTotal = this.numberMediumNews + this.numberSmallNews
-
-    if (index % pageNewsTotal < this.numberSmallNews){
-      return true
-    } 
-    return false
   }
 
   onScroll() {
     this.getSecondaryNews()
-    console.log("Scrolled")
-
   }
 }
