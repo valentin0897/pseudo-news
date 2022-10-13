@@ -1,0 +1,24 @@
+<h1>News editor</h1>
+<div class="news-editor">
+    <div class="column half">
+        <form action="POST" class="news-form-editor">
+            <div class="field">
+                <input class="input-text" placeholder="Title" name="news-title" id="news-title" type="text">
+            </div>
+            <div class="field">
+                <textarea class="textarea" name="news-text" placeholder="News text..." id="news-text" cols="30" rows="10"></textarea>
+            </div>
+            <div class="field">
+                <input type="file" name="news-cover-img" id="news-cover-img">
+            </div>
+            <img src="" alt="cover">
+        </form>
+    </div>
+    <div class="column half">
+        <div class="preview"></div>
+        <div class="buttons">
+            <a routerLink="/" class="button">Save</a>
+            <a routerLink="/" class="button">Close</a>
+        </div>
+    </div>
+</div>
