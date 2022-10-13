@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminNewsConstructorComponent } from './admin-news-constructor/admin-news-constructor.component';
 
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
@@ -7,7 +8,8 @@ const routes: Routes = [
   { path: 'admin',
     component: AdminPanelComponent,
     children: [
-      {path: 'admin', component: AdminPanelComponent}
+      {path: '', pathMatch: 'full', redirectTo:'news-constructor' },
+      {path: 'news-constructor', component: AdminNewsConstructorComponent}
     ]}
 ];
 
