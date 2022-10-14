@@ -1,7 +1,7 @@
 .constructor-news
     display: flex
     flex-direction: column
-    max-width: 30%
+    max-width: 40%
 
     .constructor-news-item
         display: flex
@@ -12,5 +12,6 @@
         background: $main-admin-color
 
         .change-button
+            @include button($button-bg-color, $button-text-color)
             &:visited
                 color: $main-admin-text-color

@@ -29,7 +29,7 @@ export class MainNewsComponent implements OnInit {
 
     this.newsList$ = this.route.paramMap.pipe(
       switchMap(() =>{
-        return this.newsService.getNews()
+        return this.newsService.getMainNews()
       })
     )
 
