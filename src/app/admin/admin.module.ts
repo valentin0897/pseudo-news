@@ -6,6 +6,8 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AdminHeaderComponent } from './admin-header/admin-header.component';
 import { AdminNewsConstructorComponent } from './admin-news-constructor/admin-news-constructor.component';
 import { AdminNewsEditorComponent } from './admin-news-editor/admin-news-editor.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AppModule } from '../app.module';
 
 
 @NgModule({
@@ -13,11 +15,12 @@ import { AdminNewsEditorComponent } from './admin-news-editor/admin-news-editor.
     AdminPanelComponent,
     AdminHeaderComponent,
     AdminNewsConstructorComponent,
-    AdminNewsEditorComponent
+    AdminNewsEditorComponent,
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    ReactiveFormsModule,
   ]
 })
 export class AdminModule { }
