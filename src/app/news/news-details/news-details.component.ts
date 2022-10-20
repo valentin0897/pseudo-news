@@ -34,7 +34,7 @@ export class NewsDetailsComponent implements OnInit {
       })
     )
 
-    this.newsService.getNews().subscribe(
+    this.newsService.getMainNews().subscribe(
       (news) => {for (let newsItem of news) this.rightColumnNewsList.push(newsItem)}
     )
   }

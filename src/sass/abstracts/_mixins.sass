@@ -1,4 +1,9 @@
 @mixin button($bg-color, $color)
-    padding: 10px 20px
+    padding: 10px 30px
     background-color: $bg-color
     color: $color
+    border-radius: 3%
+
+    &:hover
+        background-color: lighten($bg-color, 10%)
+        transition: all, 0.2s

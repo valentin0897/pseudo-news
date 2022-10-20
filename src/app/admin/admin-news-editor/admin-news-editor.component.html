@@ -2,16 +2,20 @@
     <div class="column half">
         <h1>News editor</h1>
         <form action="POST" class="news-form-editor" [formGroup]="newsForm">
+            <img class="img" style="width: 100%; cursor: pointer" src="{{newsItem.imgUrl}}" alt="cover" (click)="changeImage()">
             <div class="field">
                 <input class="input-text" formControlName="title" [(ngModel)]="newsItem.title" placeholder="Title" name="news-title" id="news-title" type="text">
             </div>
             <div class="field">
                 <textarea class="textarea" formControlName="textNews" [(ngModel)]="newsItem.text" name="news-text" placeholder="News text..." id="news-text" cols="30" rows="30"></textarea>
             </div>
-            <div class="field">
-                <input type="file" formControlName="image" name="news-cover-img" id="news-cover-img">
+            <div class="field" style="display: none">
+                <input #inputFile type="file" formControlName="image" accept=".jpeg,.JPEG,.jpg,.JPG,.png" name="news-cover-img" id="news-cover-img">
             </div>
-            <img src="" alt="cover">
+            <div class="buttons">
+                <a routerLink="/" class="button save-button">Save</a>
+                <a routerLink="/admin/news-constructor" class="button">Close</a>
+            </div>
         </form>
     </div>
     <div class="column half">
@@ -26,10 +30,6 @@
                     <p *ngFor="let paragraph of newsItem.text.trim().split('.')" class="paragraph">{{paragraph}}</p> 
                 </div>
             </div>
-        </div>
-        <div class="buttons">
-            <a routerLink="/" class="button">Save</a>
-            <a routerLink="/" class="button">Close</a>
         </div>
     </div>
 </div>

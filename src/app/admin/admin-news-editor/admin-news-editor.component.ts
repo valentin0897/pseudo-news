@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
@@ -10,6 +10,7 @@ import { NewsService } from 'src/app/services/news.service';
   templateUrl: './admin-news-editor.component.html',
 })
 export class AdminNewsEditorComponent implements OnInit {
+  @ViewChild("inputFile") inputFile!: ElementRef
   newsItem$!: Observable<NewsItem>
   newsItem: NewsItem = new NewsItem(0, "", "", "", "", "")
   newsForm!: FormGroup
@@ -45,6 +46,8 @@ export class AdminNewsEditorComponent implements OnInit {
     this.newsForm.controls["textNews"].setValue(newsText)
   }
 
-
+  changeImage(): void {
+    this.inputFile.nativeElement.click()
+  }
 
 }
