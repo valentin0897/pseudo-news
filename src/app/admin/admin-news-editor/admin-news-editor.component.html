@@ -13,7 +13,7 @@
                 <input #inputFile type="file" formControlName="image" accept=".jpeg,.JPEG,.jpg,.JPG,.png" name="news-cover-img" id="news-cover-img">
             </div>
             <div class="buttons">
-                <a routerLink="/" class="button save-button">Save</a>
+                <a routerLink="/admin/news-constructor" class="button save-button" (click)="changeNews()" >Save</a>
                 <a routerLink="/admin/news-constructor" class="button">Close</a>
             </div>
         </form>
