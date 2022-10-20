@@ -8,6 +8,7 @@ import { AdminNewsConstructorComponent } from './admin-news-constructor/admin-ne
 import { AdminNewsEditorComponent } from './admin-news-editor/admin-news-editor.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppModule } from '../app.module';
+import { NewsModule } from '../news/news.module';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { AppModule } from '../app.module';
   imports: [
     CommonModule,
     AdminRoutingModule,
+    NewsModule,
     ReactiveFormsModule,
   ]
 })

@@ -28,6 +28,9 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     InfiniteScrollModule,
     CommonModule,
     NewsRoutingModule
+  ],
+  exports: [
+    NewsDetailsComponent
   ]
 })
 export class NewsModule { }

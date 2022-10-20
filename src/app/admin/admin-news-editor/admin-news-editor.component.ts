@@ -11,7 +11,9 @@ import { NewsService } from 'src/app/services/news.service';
 })
 export class AdminNewsEditorComponent implements OnInit {
   newsItem$!: Observable<NewsItem>
+  newsItem: NewsItem = new NewsItem(0, "", "", "", "", "")
   newsForm!: FormGroup
+
 
   constructor(private route: ActivatedRoute,
               public newsService: NewsService,
@@ -32,7 +34,7 @@ export class AdminNewsEditorComponent implements OnInit {
     })
  
     this.newsItem$.subscribe({next:(newsItem: NewsItem)=>{
-      this.newsForm.controls["title"].setValue(newsItem.title)
+      this.newsItem = newsItem
       this.newsForm.controls["textNews"].setValue(newsItem.text)
     }})
 

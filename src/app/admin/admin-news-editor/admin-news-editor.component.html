@@ -1,12 +1,12 @@
-<h1>News editor</h1>
 <div class="news-editor">
     <div class="column half">
+        <h1>News editor</h1>
         <form action="POST" class="news-form-editor" [formGroup]="newsForm">
             <div class="field">
-                <input class="input-text" formControlName="title" placeholder="Title" name="news-title" id="news-title" type="text">
+                <input class="input-text" formControlName="title" [(ngModel)]="newsItem.title" placeholder="Title" name="news-title" id="news-title" type="text">
             </div>
             <div class="field">
-                <textarea class="textarea" formControlName="textNews" name="news-text" placeholder="News text..." id="news-text" cols="30" rows="30"></textarea>
+                <textarea class="textarea" formControlName="textNews" [(ngModel)]="newsItem.text" name="news-text" placeholder="News text..." id="news-text" cols="30" rows="30"></textarea>
             </div>
             <div class="field">
                 <input type="file" formControlName="image" name="news-cover-img" id="news-cover-img">
@@ -15,7 +15,17 @@
         </form>
     </div>
     <div class="column half">
+        <h1>News Preview</h1>
         <div class="preview">
+            <div class="column">
+                <div class="cover">
+                    <img class="img" src="{{newsItem.imgUrl}}" alt="news-image">
+                    <h2 class="cover-title">{{newsItem.title}}</h2>
+                </div>
+                <div class="text-wrapper">
+                    <p *ngFor="let paragraph of newsItem.text.trim().split('.')" class="paragraph">{{paragraph}}</p> 
+                </div>
+            </div>
         </div>
         <div class="buttons">
             <a routerLink="/" class="button">Save</a>
