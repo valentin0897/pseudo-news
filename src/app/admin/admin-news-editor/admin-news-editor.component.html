@@ -2,7 +2,7 @@
     <div class="column half">
         <h1>News editor</h1>
         <form action="POST" class="news-form-editor" [formGroup]="newsForm">
-            <img class="img" style="width: 100%; cursor: pointer" src="{{newsItem.imgUrl}}" alt="cover" (click)="changeImage()">
+            <img class="img" style="width: 100%; cursor: pointer" src="{{newsItem.img_url}}" alt="cover" (click)="changeImage()">
             <div class="field">
                 <input class="input-text" formControlName="title" [(ngModel)]="newsItem.title" placeholder="Title" name="news-title" id="news-title" type="text">
             </div>
@@ -23,7 +23,7 @@
         <div class="preview">
             <div class="column">
                 <div class="cover">
-                    <img class="img" src="{{newsItem.imgUrl}}" alt="news-image">
+                    <img class="img" src="{{newsItem.img_url}}" alt="news-image">
                     <h2 class="cover-title">{{newsItem.title}}</h2>
                 </div>
                 <div class="text-wrapper">

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
-import { MAIN_NEWS } from 'src/app/mock-news';
+// import { MAIN_NEWS } from 'src/app/mock-news';
 import { NewsItem } from 'src/app/models/newsItem';
 import { NewsService } from 'src/app/services/news.service';
 
@@ -13,7 +13,7 @@ import { NewsService } from 'src/app/services/news.service';
 export class AdminNewsEditorComponent implements OnInit {
   @ViewChild("inputFile") inputFile!: ElementRef
   newsItem$!: Observable<NewsItem>
-  newsItem: NewsItem = new NewsItem(0, "", "", "", "", "")
+  newsItem: NewsItem = new NewsItem(0, "", "", "", "", "", false, "", 0)
   newsForm!: FormGroup
 
 
@@ -55,12 +55,7 @@ export class AdminNewsEditorComponent implements OnInit {
     let title = this.newsForm.controls["title"].value
     let textNews = this.newsForm.controls["textNews"].value
 
-    for (let news of MAIN_NEWS) {
-      if (news.id == this.newsItem.id) {
-        news.title = title
-        news.text = textNews
-      }
-    }
+    // this.newsService.updateNews()
   }
 
 }
