@@ -5,7 +5,7 @@ import { Observable, of, map, zip } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { NewsItem } from '../models/newsItem';
 // import { MAIN_NEWS } from '../mock-news';
-import { local_environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class NewsService {
   constructor(private http: HttpClient) { }
 
   getMainNews(): Observable<NewsItem[]> {
-    return this.http.get(local_environment.host + "/news/") as Observable<NewsItem[]>
+    return this.http.get(environment.host + "/news/") as Observable<NewsItem[]>
     // return of(MAIN_NEWS)
   }
 
@@ -29,6 +29,6 @@ export class NewsService {
     //   map((news: NewsItem[]) => news.find(newsItem => newsItem.id === id)!)
     // )
 
-    return this.http.get(local_environment.host + "/news/" + id.toString()) as Observable<NewsItem>
+    return this.http.get(environment.host + "/news/" + id.toString()) as Observable<NewsItem>
   }
 }
