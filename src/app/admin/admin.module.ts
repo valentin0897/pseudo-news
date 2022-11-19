@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppModule } from '../app.module';
 import { NewsModule } from '../news/news.module';
 
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { NewsModule } from '../news/news.module';
     AdminRoutingModule,
     NewsModule,
     ReactiveFormsModule,
+    AngularEditorModule
   ]
 })
 export class AdminModule { }
