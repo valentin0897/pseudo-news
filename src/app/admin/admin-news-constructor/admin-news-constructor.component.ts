@@ -7,9 +7,11 @@ import { NewsService } from 'src/app/services/news.service';
 @Component({
   selector: 'app-admin-news-constructor',
   templateUrl: './admin-news-constructor.component.html',
+  host: {"class": "news-constructor-wrapper"}
 })
 export class AdminNewsConstructorComponent implements OnInit {
   mainNewsList$!: Observable<NewsItem[]>
+  regularNewsList$!: Observable<NewsItem[]>
 
   constructor(
     public newsService: NewsService,
@@ -19,6 +21,11 @@ export class AdminNewsConstructorComponent implements OnInit {
     this.mainNewsList$ = this.route.paramMap.pipe(
       switchMap(() =>{
         return this.newsService.getMainNews()
+      })
+    )
+    this.regularNewsList$ = this.route.paramMap.pipe(
+      switchMap(() => {
+        return this.newsService.getRegularNews()
       })
     )
   }

@@ -1,7 +1,19 @@
-<h1>Main News Constructor</h1>
-<ul class="constructor-news">
-    <li class="constructor-news-item" *ngFor="let newsItem of mainNewsList$ | async">
-        <p class="title">{{newsItem.title}}</p>
-        <a [routerLink]="['/admin', 'news-editor', newsItem.id]" class="change-button">Change</a>
-    </li>
-</ul>
+
+<div class="constructor-news">
+    <h1>Main News Constructor</h1>
+    <ul class="">
+        <li class="constructor-news-item" *ngFor="let newsItem of mainNewsList$ | async">
+            <p class="title">{{newsItem.title}}</p>
+            <a [routerLink]="['/admin', 'news-editor', newsItem.id]" class="change-button">Change</a>
+        </li>
+    </ul>
+</div>
+<div class="constructor-news">
+    <ul class="">
+        <h1>Regular News Constructor</h1>
+        <li class="constructor-news-item" *ngFor="let newsItem of regularNewsList$ | async">
+            <p class="title">{{newsItem.title}}</p>
+            <a [routerLink]="['/admin', 'news-editor', newsItem.id]" class="change-button">Change</a>
+        </li>
+    </ul>
+</div>
