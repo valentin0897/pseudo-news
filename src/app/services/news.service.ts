@@ -15,20 +15,14 @@ export class NewsService {
   constructor(private http: HttpClient) { }
 
   getMainNews(): Observable<NewsItem[]> {
-    return this.http.get(environment.host + "/news/") as Observable<NewsItem[]>
-    // return of(MAIN_NEWS)
+    return this.http.get(environment.host + "/news/main/") as Observable<NewsItem[]>
   }
 
-  // getNews(): Observable<NewsItem[]> {
-  //  return of(NEWS) 
-  // }
+  getRegularNews(): Observable<NewsItem[]> {
+    return this.http.get(environment.host + "/news/regular/") as Observable<NewsItem[]>
+  }
 
   getNewsById(id: number): Observable<NewsItem> {
-    // let allNews = zip(this.getMainNews(), this.getNews()).pipe(map((x: any) =>x[0].concat(x[1]))) 
-    // return allNews.pipe(
-    //   map((news: NewsItem[]) => news.find(newsItem => newsItem.id === id)!)
-    // )
-
     return this.http.get(environment.host + "/news/" + id.toString()) as Observable<NewsItem>
   }
 }
