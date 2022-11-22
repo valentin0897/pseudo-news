@@ -2,7 +2,7 @@
 <div class="constructor-news">
     <h1>Main News Constructor</h1>
     <ul class="">
-        <li class="constructor-news-item" *ngFor="let newsItem of mainNewsList$ | async">
+        <li class="constructor-news-item" *ngFor="let newsItem of mainNewsList">
             <p class="title">{{newsItem.title}}</p>
             <a [routerLink]="['/admin', 'news-editor', newsItem.id]" class="change-button">Change</a>
         </li>
@@ -11,9 +11,10 @@
 <div class="constructor-news">
     <ul class="">
         <h1>Regular News Constructor</h1>
-        <li class="constructor-news-item" *ngFor="let newsItem of regularNewsList$ | async">
+        <li class="constructor-news-item" *ngFor="let newsItem of regularNewsList;">
             <p class="title">{{newsItem.title}}</p>
             <a [routerLink]="['/admin', 'news-editor', newsItem.id]" class="change-button">Change</a>
+            <a class="delete-button" (click)="deleteNews(newsItem.id)">Delete</a>
         </li>
     </ul>
 </div>

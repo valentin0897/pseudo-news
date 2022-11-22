@@ -11,7 +11,9 @@ import { NewsService } from 'src/app/services/news.service';
 })
 export class AdminNewsConstructorComponent implements OnInit {
   mainNewsList$!: Observable<NewsItem[]>
+  mainNewsList: NewsItem[] = []
   regularNewsList$!: Observable<NewsItem[]>
+  regularNewsList: NewsItem[] = []
 
   constructor(
     public newsService: NewsService,
@@ -23,11 +25,35 @@ export class AdminNewsConstructorComponent implements OnInit {
         return this.newsService.getMainNews()
       })
     )
+
+    this.mainNewsList$.subscribe(
+      (newsItem: NewsItem[])=>{this.mainNewsList = newsItem}
+    )
+
     this.regularNewsList$ = this.route.paramMap.pipe(
       switchMap(() => {
         return this.newsService.getRegularNews()
       })
     )
+
+    this.regularNewsList$.subscribe(
+      (newsItem: NewsItem[])=>{this.regularNewsList = newsItem}
+    )
   }
 
+  trackByFn(index: number, item: NewsItem){     
+    return index; 
+  }
+
+  deleteNews(newsId: number){
+    console.log(newsId)
+    this.newsService.deleteNewsById(newsId).subscribe(
+      {
+        next: () => {
+          this.regularNewsList = this.regularNewsList.filter((news: NewsItem) => {
+          return news.id !== newsId
+        })}
+      }
+    )
+  }
 }

@@ -25,4 +25,8 @@ export class NewsService {
   getNewsById(id: number): Observable<NewsItem> {
     return this.http.get(environment.host + "/news/" + id.toString()) as Observable<NewsItem>
   }
+
+  deleteNewsById(id: number) {
+    return this.http.delete(environment.host + "/news/" + id.toString())
+  }
 }
