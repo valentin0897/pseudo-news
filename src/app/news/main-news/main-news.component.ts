@@ -37,7 +37,7 @@ export class MainNewsComponent implements OnInit {
   }
 
   onScroll() {
-    this.newsService.getMainNews().subscribe(
+    this.newsService.getRegularNews().subscribe(
       (news) => {for (let newsItem of news) this.secondaryNewsList.push(newsItem)}
     )
   }
