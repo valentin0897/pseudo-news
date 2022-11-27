@@ -4,6 +4,7 @@ import { Observable, switchMap } from 'rxjs';
 import { NewsItem } from 'src/app/models/newsItem';
 import { TagItem } from 'src/app/models/tagItem';
 import { NewsService } from 'src/app/services/news.service';
+import { TagsService } from 'src/app/services/tags.service';
 import { isSmallNews } from 'src/app/utilities/utility';
 
 @Component({
@@ -22,7 +23,8 @@ export class MainNewsComponent implements OnInit {
   numberSmallNews = 8
   numberMediumNews = 4
 
-  constructor(public newsService: NewsService, 
+  constructor(public newsService: NewsService,
+              public tagService: TagsService, 
               private route: ActivatedRoute, 
               private router: Router) { }
 
@@ -46,7 +48,7 @@ export class MainNewsComponent implements OnInit {
 
   filterByTag(tag: string) {
     let tagItem: TagItem
-    this.newsService.getTagByName(tag).subscribe((value: TagItem)=> {tagItem = value})
+    this.tagService.getTagByName(tag).subscribe((value: TagItem)=> {tagItem = value})
     this.newsList = this.newsList.filter((news: NewsItem) => {
       return news.tag_id != tagItem.id
     })
