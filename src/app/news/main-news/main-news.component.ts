@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { NewsItem } from 'src/app/models/newsItem';
+import { TagItem } from 'src/app/models/tagItem';
 import { NewsService } from 'src/app/services/news.service';
 import { isSmallNews } from 'src/app/utilities/utility';
 
@@ -11,6 +12,7 @@ import { isSmallNews } from 'src/app/utilities/utility';
 })
 export class MainNewsComponent implements OnInit {
   newsList$!: Observable<NewsItem[]>
+  newsList: NewsItem[] = []
 
   activeTag: string = ""
   title: string = "Main news"
@@ -30,10 +32,24 @@ export class MainNewsComponent implements OnInit {
     this.newsList$ = this.route.paramMap.pipe(
       switchMap(() =>{
         return this.newsService.getMainNews()
+        
       })
     )
 
+    this.newsList$.subscribe(
+      (newsItem: NewsItem[])=>{this.newsList = newsItem}
+    )
+
+
     this.onScroll() // Only for mocking
+  }
+
+  filterByTag(tag: string) {
+    let tagItem: TagItem
+    this.newsService.getTagByName(tag).subscribe((value: TagItem)=> {tagItem = value})
+    this.newsList = this.newsList.filter((news: NewsItem) => {
+      return news.tag_id != tagItem.id
+    })
   }
 
   onScroll() {
