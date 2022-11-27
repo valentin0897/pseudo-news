@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-
-import { Observable, of, map, zip } from 'rxjs';
-
 import { HttpClient } from '@angular/common/http';
-import { NewsItem } from '../models/newsItem';
-// import { MAIN_NEWS } from '../mock-news';
+
+import { Observable} from 'rxjs';
+
 import { environment } from 'src/environments/environment';
-import { TagItem } from '../models/tagItem';
+import { NewsItem } from '../models/newsItem';
+
 
 @Injectable({
   providedIn: 'root'
@@ -29,13 +28,5 @@ export class NewsService {
 
   deleteNewsById(id: number) {
     return this.http.delete(environment.host + "/news/" + id.toString())
-  }
-
-  getTagById(tagId: number) {
-    return this.http.get(environment.host + "/tag/" + tagId.toString())
-  }
-
-  getTagByName(tagName: string): Observable<TagItem>{
-    return this.http.get(environment.host + "/tag/", {params: {tagName: tagName}}) as Observable<TagItem>
   }
 }
