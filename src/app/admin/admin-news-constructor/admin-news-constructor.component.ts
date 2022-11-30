@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { NewsItem } from 'src/app/models/newsItem';
 import { NewsService } from 'src/app/services/news.service';
+import { faEdit } from '@fortawesome/free-solid-svg-icons'; 
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-admin-news-constructor',
@@ -14,6 +16,8 @@ export class AdminNewsConstructorComponent implements OnInit {
   mainNewsList: NewsItem[] = []
   regularNewsList$!: Observable<NewsItem[]>
   regularNewsList: NewsItem[] = []
+  faEdit = faEdit
+  faTrash = faTrash
 
   constructor(
     public newsService: NewsService,

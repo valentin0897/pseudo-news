@@ -3,9 +3,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { Observable, switchMap } from 'rxjs';
-// import { MAIN_NEWS } from 'src/app/mock-news';
 import { NewsItem } from 'src/app/models/newsItem';
 import { NewsService } from 'src/app/services/news.service';
+import { ImageUpload } from 'src/app/models/imageUpload';
+import { ImageService } from 'src/app/services/image.service';
 
 @Component({
   selector: 'app-admin-news-editor',
@@ -13,6 +14,7 @@ import { NewsService } from 'src/app/services/news.service';
   host: {class: "news-editor-wrapper"}
 })
 export class AdminNewsEditorComponent implements OnInit {
+  selectedFile!: File
   @ViewChild("inputFile") inputFile!: ElementRef
   newsItem$!: Observable<NewsItem>
   newsItem: NewsItem = new NewsItem(0, "", "", "", "", "", false, "", 0)
@@ -60,6 +62,7 @@ export class AdminNewsEditorComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               public newsService: NewsService,
+              public imageService: ImageService,
               private fb: FormBuilder) {
  }
 
@@ -92,11 +95,30 @@ export class AdminNewsEditorComponent implements OnInit {
     this.inputFile.nativeElement.click()
   }
 
+  replaceImage(imagePath: string): void {
+    this.newsItem.img_url = imagePath
+  }
+
+  processImage(inputFile: any): void {
+    this.selectedFile = inputFile.files[0]
+    this.imageService.uploadImage(this.selectedFile, this.newsItem.id.toString()).subscribe({
+      next: (file: any) => {
+        this.replaceImage(file.file)
+      }
+    })
+  }
+
   changeNews(): void {
     let title = this.newsForm.controls["title"].value
     let textNews = this.newsForm.controls["textNews"].value
+    let body = {
+      "title": title
+    }
 
-    // this.newsService.updateNews()
+
+    this.newsService.updateNewsById(this.newsItem.id, body).subscribe({
+      next: (newsItem: NewsItem) => {console.log("News Changed")}
+    })
   }
 
 }

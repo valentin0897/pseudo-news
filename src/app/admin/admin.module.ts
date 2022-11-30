@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
@@ -11,6 +12,8 @@ import { AppModule } from '../app.module';
 import { NewsModule } from '../news/news.module';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { AdminNewsMenuComponent } from './admin-news-menu/admin-news-menu/admin-news-menu.component';
+import { AdminNewsSettingsComponent } from './admin-news-settings/admin-news-settings/admin-news-settings.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +21,16 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     AdminHeaderComponent,
     AdminNewsConstructorComponent,
     AdminNewsEditorComponent,
+    AdminNewsMenuComponent,
+    AdminNewsSettingsComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     NewsModule,
     ReactiveFormsModule,
-    AngularEditorModule
+    AngularEditorModule,
+    FontAwesomeModule
   ]
 })
 export class AdminModule { }

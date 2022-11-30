@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Link } from 'src/app/models/link';
+import { SettingsItem } from 'src/app/models/settingsItem';
+import { SettingsService } from 'src/app/services/settings.service';
 
 @Component({
   selector: 'app-header',
@@ -8,10 +10,11 @@ import { Link } from 'src/app/models/link';
 export class HeaderComponent implements OnInit {
   title: string = ""
 
-  constructor() { }
+  constructor(public settingsService: SettingsService) { }
 
   ngOnInit(): void {
-    this.title = "News of the week"
+    this.settingsService.getActiveSettings().subscribe(
+      {next: (settings: SettingsItem) => {this.title = settings.header_title}}
+    )
   }
-
 }

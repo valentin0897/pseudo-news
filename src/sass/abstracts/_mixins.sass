@@ -2,8 +2,30 @@
     padding: 10px 30px
     background-color: $bg-color
     color: $color
-    border-radius: 3%
+    border-radius: 3px
+    cursor: pointer
 
     &:hover
         background-color: lighten($bg-color, 10%)
         transition: all, 0.2s
+
+    &:visited
+        color: $color
+
+@mixin input-text()
+    padding: 1rem 1.25rem
+    border: none 
+    background: hsl(0 0% 90%)
+    box-shadow: 0 0.1rem 0.25rem 0 hsl(0 0% 80%)
+
+    &:focus
+        outline: 1px solid hsl(0 0% 50%)
+
+@mixin textarea()
+    padding: 1rem 1.25rem
+    border: none
+    background: hsl(0 0% 90%)
+    box-shadow: 0 0.1rem 0.25rem 0 hsl(0 0% 80%)
+
+    &:focus
+        outline: 1px solid hsl(0 0% 50%)

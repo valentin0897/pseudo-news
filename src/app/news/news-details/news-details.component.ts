@@ -8,7 +8,7 @@ import { isSmallNews } from 'src/app/utilities/utility';
 @Component({
   selector: 'app-news-details',
   templateUrl: './news-details.component.html',
-  host: {'class': 'news-details'}
+  host: {'class': 'news-details-wrapper'}
 })
 export class NewsDetailsComponent implements OnInit {
   newsId: number = 0

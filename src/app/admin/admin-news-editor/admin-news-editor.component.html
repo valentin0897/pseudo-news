@@ -5,12 +5,9 @@
         <div class="field">
             <input class="input-text" formControlName="title" [(ngModel)]="newsItem.title" placeholder="Title" name="news-title" id="news-title" type="text">
         </div>
-        <!-- <div class="field">
-            <textarea class="textarea" formControlName="textNews" [(ngModel)]="newsItem.text" name="news-text" placeholder="News text..." id="news-text" cols="30" rows="30"></textarea>
-        </div> -->
         <angular-editor formControlName="textNews" [(ngModel)]="newsItem.text" name="news-text" placeholder="News text..." [config]="editorConfig"></angular-editor>
         <div class="field" style="display: none">
-            <input #inputFile type="file" formControlName="image" accept=".jpeg,.JPEG,.jpg,.JPG,.png" name="news-cover-img" id="news-cover-img">
+            <input #inputFile type="file" (change)="processImage(inputFile)" formControlName="image" accept=".jpeg,.JPEG,.jpg,.JPG,.png" name="news-cover-img" id="news-cover-img">
         </div>
         <div class="buttons">
             <a routerLink="/admin/news-constructor" class="button save-button" (click)="changeNews()" >Save</a>

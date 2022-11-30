@@ -1,6 +1,7 @@
 .news-editor-wrapper
     display: flex
     justify-content: center
+    margin-top: $margin-from-header
 
 .news-editor
     display: flex
@@ -11,13 +12,3 @@
 
     h1
         margin-bottom: 20px
-
-    .buttons
-        display: flex
-        margin-top: 20px
-        justify-content: center
-        .button
-            margin: 0 20px
-
-        .save-button
-            @include button($button-save-bg-color, $button-text-color)

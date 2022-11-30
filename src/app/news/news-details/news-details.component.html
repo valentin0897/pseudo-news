@@ -1,5 +1,5 @@
 <div class="column-wrapper">
-    <div class="column" *ngIf="mainNewsItem$ | async as mainNewsItem">
+    <div class="column news-details" *ngIf="mainNewsItem$ | async as mainNewsItem">
         <div class="cover">
             <img class="img" src="{{mainNewsItem.img_url}}" alt="news-image">
             <h2 class="cover-title">{{mainNewsItem.title}}</h2>

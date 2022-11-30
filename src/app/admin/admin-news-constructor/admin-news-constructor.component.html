@@ -4,7 +4,9 @@
     <ul class="">
         <li class="constructor-news-item" *ngFor="let newsItem of mainNewsList">
             <p class="title">{{newsItem.title}}</p>
-            <a [routerLink]="['/admin', 'news-editor', newsItem.id]" class="change-button">Change</a>
+            <div class="buttons-wrapper">
+                <a [routerLink]="['/admin', 'news-editor', newsItem.id]" class="button"><fa-icon [icon]="faEdit"></fa-icon></a>
+            </div>
         </li>
     </ul>
 </div>
@@ -13,8 +15,10 @@
         <h1>Regular News Constructor</h1>
         <li class="constructor-news-item" *ngFor="let newsItem of regularNewsList;">
             <p class="title">{{newsItem.title}}</p>
-            <a [routerLink]="['/admin', 'news-editor', newsItem.id]" class="change-button">Change</a>
-            <a class="delete-button" (click)="deleteNews(newsItem.id)">Delete</a>
+            <div class="buttons-wrapper">
+                <a [routerLink]="['/admin', 'news-editor', newsItem.id]" class="button"><fa-icon [icon]="faEdit"></fa-icon></a>
+                <a class="delete-button" (click)="deleteNews(newsItem.id)"><fa-icon [icon]="faTrash"></fa-icon></a>
+            </div>
         </li>
     </ul>
 </div>

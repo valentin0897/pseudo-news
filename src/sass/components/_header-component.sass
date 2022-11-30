@@ -16,20 +16,13 @@ header
             left: 50%
             transform: translate(-50%, -50%)
 
-            .title
-
-                &:visited
-                    color: $main-font-color
-
-        .links
+    .links
+        display: flex
+        
+        .link-wrapper
             display: flex
+            align-items: center
+            margin: 0 10px
 
-            .link-wrapper
-                .link
-                    color: $main-font-color
-                    padding: 20px 10px
-                    display: flex
-                    text-transform: capitalize
-
-                    &:hover
-                        color: $main-font-hover
+            .link:hover
+                color: $accent-color

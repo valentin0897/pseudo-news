@@ -26,6 +26,10 @@ export class NewsService {
     return this.http.get(environment.host + "/news/" + id.toString()) as Observable<NewsItem>
   }
 
+  updateNewsById(id: number, body: any): Observable<NewsItem> {
+    return this.http.patch(environment.host + "/news/" + id.toString(), body) as Observable<NewsItem>
+  }
+
   deleteNewsById(id: number) {
     return this.http.delete(environment.host + "/news/" + id.toString())
   }

@@ -1,21 +1,21 @@
-.news-details, .preview
-    
+.news-details-wrapper
+    margin-top: $margin-from-header
+
+    .news-details .cover
+        margin: 0 10px
+
     .cover
         position: relative
         .img
             width: 100%
 
         .cover-title
-            bottom: 5px
+            bottom: 2px
             position: absolute
-            background: rgba(0,0,0,0.3)
-            padding: 5px 15px
+            background: rgba($black-color, 0.3)
+            padding: 10px 15px
     
-
     .text-wrapper
-        background-color: #ffebeb
+        background-color: lighten($accent-color, 35%)
         padding: 15px 20px 
-        margin-top: 20px
-
-        .paragraph
-            margin: 1rem 0
+        margin: 20px 10px 0 10px

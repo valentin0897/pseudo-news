@@ -22,4 +22,15 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render title', ()=> {
+    const headerComponent = new HeaderComponent()
+    headerComponent.ngOnInit()
+
+    const fixture = TestBed.createComponent(HeaderComponent);
+    fixture.detectChanges();
+    
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector("header .title")?.textContent).toEqual(headerComponent.title)
+  })
 });

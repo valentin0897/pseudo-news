@@ -9,3 +9,32 @@
 
 .button
     @include button($button-bg-color, $button-text-color)
+
+.save-button
+    @include button($button-green-bg-color, $button-text-color)
+
+.delete-button
+    @include button($button-red-bg-color, $button-text-color)
+
+.field
+    display: flex
+    flex-direction: column
+    width: 100%
+    
+    label
+        margin-bottom: 1.5rem
+
+.buttons
+    display: flex
+    margin-top: 20px
+    justify-content: center
+    
+    .button
+        margin: 0 20px
+
+
+.input-text
+    @include input-text
+
+.textarea
+    @include textarea

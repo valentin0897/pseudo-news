@@ -1,0 +1,13 @@
+<div class="menu-news">
+    <h1>Site Settings</h1>
+    <form action="POST" class="settings-form" [formGroup]="settingsForm">
+        <div class="field">
+            <label for="header-title">Site Title</label>
+            <input class="input-text" formControlName="headerTitle" placeholder="Header Title" name="header-title" id="header-title" type="text">
+        </div>
+        <div class="buttons-wrapper">
+            <a routerLink="/admin/news-menu" class="button save-button" (click)="changeSettings()" >Save</a>
+            <a routerLink="/admin/news-menu" class="button">Close</a>
+        </div>
+    </form>
+</div>
