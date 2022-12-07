@@ -1,13 +1,25 @@
 <div class="news-editor">
     <h1>News editor</h1>
     <form action="POST" class="news-form-editor" [formGroup]="newsForm">
-        <img class="img" style="width: 100%; cursor: pointer" src="{{newsItem.img_url}}" alt="cover" (click)="changeImage()">
+        <img class="img" src="{{newsItem.img_url}}" alt="cover" (click)="changeImage()">
         <div class="field">
-            <input class="input-text" formControlName="title" [(ngModel)]="newsItem.title" placeholder="Title" name="news-title" id="news-title" type="text">
+            <input class="input-text" formControlName="title" placeholder="Title" name="news-title" id="news-title" type="text">
         </div>
-        <angular-editor formControlName="textNews" [(ngModel)]="newsItem.text" name="news-text" placeholder="News text..." [config]="editorConfig"></angular-editor>
+        <angular-editor formControlName="text" name="text" placeholder="News text..." [config]="editorConfig"></angular-editor>
         <div class="field" style="display: none">
             <input #inputFile type="file" (change)="processImage(inputFile)" formControlName="image" accept=".jpeg,.JPEG,.jpg,.JPG,.png" name="news-cover-img" id="news-cover-img">
+        </div>
+        <div class="field">
+            <label for="pub_time">Publication Time (Optional) </label>
+            <input class="input-text" formControlName="pub_time" placeholder="6" name="pub_time" id="pub_time" type="number" [min]="minPubTime" [max]="maxPubTime">
+        </div>
+        <div class="field">
+            <label for="short_description">Short Description (Optional)</label>
+            <input class="input-text" formControlName="short_description" placeholder="Notes for this news" name="short_description" id="short_description" type="text">
+        </div>
+        <div class="field">
+            <label for="outer_link">Link to external website (Optional)</label>
+            <input class="input-text" formControlName="outer_link" placeholder="https://somelink.com" name="outer_link" id="outer_link" type="text">
         </div>
         <div class="buttons">
             <a routerLink="/admin/news-constructor" class="button save-button" (click)="changeNews()" >Save</a>
