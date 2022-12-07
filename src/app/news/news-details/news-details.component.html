@@ -4,8 +4,7 @@
             <img class="img" src="{{mainNewsItem.img_url}}" alt="news-image">
             <h2 class="cover-title">{{mainNewsItem.title}}</h2>
         </div>
-        <div class="text-wrapper">
-            <p *ngFor="let paragraph of mainNewsItem.text.trim().split('.')" class="paragraph">{{paragraph}}</p> 
+        <div class="text-wrapper" [innerHTML]="mainNewsItem.text">
         </div>
     </div>
     <div class="column">
