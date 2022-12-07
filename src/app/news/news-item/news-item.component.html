@@ -1,4 +1,4 @@
-<a [routerLink]="['/news', newsItem.id]" class="news-item">
+<a href="javascript:void(0)" (click)="handleClick()" class="news-item">
     <img src="{{newsItem.img_url}}" alt="NewsCover" class="cover">
     <div class="info">
         <h3 class="title">{{newsItem.title}}</h3>

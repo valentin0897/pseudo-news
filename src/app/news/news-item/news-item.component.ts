@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NewsItem } from 'src/app/models/newsItem';
 
 @Component({
@@ -9,9 +10,18 @@ import { NewsItem } from 'src/app/models/newsItem';
 export class NewsItemComponent implements OnInit {
   @Input() newsItem: NewsItem = new NewsItem(0, "", "", "", "", "", false, "", 0)
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+    console.log(this.newsItem)
+  }
+
+  handleClick(): void {
+    if (this.newsItem.is_outer_link) {
+      window.location.href = this.newsItem.outer_link;
+    } else {
+      this.router.navigate([`${'/news'}/${this.newsItem.id}`]);
+    }
   }
 
 }
