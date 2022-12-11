@@ -17,8 +17,8 @@ export class NewsItemComponent implements OnInit {
   }
 
   handleClick(): void {
-    if (this.newsItem.is_outer_link) {
-      window.location.href = this.newsItem.outer_link;
+    if (this.newsItem.is_external_link) {
+      window.location.href = this.newsItem.external_link;
     } else {
       this.router.navigate([`${'/news'}/${this.newsItem.id}`]);
     }

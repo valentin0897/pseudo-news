@@ -7,6 +7,7 @@ import { NewsItem } from 'src/app/models/newsItem';
 import { NewsService } from 'src/app/services/news.service';
 import { ImageService } from 'src/app/services/image.service';
 import { editorConfig } from 'src/app/configs/editor';
+import { TagItem } from 'src/app/models/tagItem';
 
 @Component({
   selector: 'app-admin-news-editor',
@@ -20,6 +21,9 @@ export class AdminNewsEditorComponent implements OnInit {
 
   newsItem$!: Observable<NewsItem>
   newsItem: NewsItem = new NewsItem(0, "", "", "", "", "", false, "", 0)
+
+  tags$!: Observable<TagItem[]>
+  tags: TagItem[] = []
 
   newsForm!: FormGroup
 
@@ -46,7 +50,8 @@ export class AdminNewsEditorComponent implements OnInit {
       image: '',
       pub_time: '',
       short_description: '',
-      outer_link: ''
+      external_link: '',
+      tags: ''
     })
  
     this.newsItem$.subscribe({next:(newsItem: NewsItem)=>{
@@ -55,7 +60,18 @@ export class AdminNewsEditorComponent implements OnInit {
       this.newsForm.controls["text"].setValue(newsItem.text)
       this.newsForm.controls["pub_time"].setValue(parseInt(newsItem.pub_time))
       this.newsForm.controls["short_description"].setValue(newsItem.short_description)
-      this.newsForm.controls["outer_link"].setValue(newsItem.outer_link)
+      this.newsForm.controls["external_link"].setValue(newsItem.external_link)
+      this.newsService.getTagsByNewsId(this.newsItem.id).subscribe({
+        next: (tagItems: TagItem[]) => {
+          this.tags = tagItems
+          let tags = ""
+          for (let tagItem of tagItems) {
+            tags += tagItem.tag + " " 
+          }
+          tags = tags.trimEnd()
+          this.newsForm.controls["tags"].setValue(tags)
+        }
+      })
     }})
   }
 
@@ -85,23 +101,68 @@ export class AdminNewsEditorComponent implements OnInit {
     }
   }
 
+  isContainTag(target: TagItem, tagsItems: TagItem[]) {
+    for(let tagItem of tagsItems) {
+      if (tagItem.tag == target.tag) {
+        return true
+      }
+    }
+    return false
+  }
+
+  createTags(tagItems: TagItem[]) {
+    for (let tagItem of tagItems) {
+      let body = {"news_id": this.newsItem.id, "tag": tagItem.tag.toLowerCase()}
+      this.newsService.addLink(body).subscribe({
+        next: (value) => {}
+      })
+    }
+  }
+
+  deleteTags(tagItems: TagItem[]) {
+    for (let tagItem of tagItems) {
+      let body = {"news_id": this.newsItem.id, "tag": tagItem.tag.toLowerCase()}
+      this.newsService.deleteLink(body).subscribe({
+        next: (value) => {}
+      })
+    }
+  }
+
   changeNews(): void {
     let title = this.newsForm.controls["title"].value
     let text = this.newsForm.controls["text"].value
     let pubTime = this.getPubTime(this.newsForm.controls["pub_time"].value)
     let shortDescription = this.newsForm.controls["short_description"].value
-    let outerLink = this.newsForm.controls["outer_link"].value
+    let outerLink = this.newsForm.controls["external_link"].value
     let isOuterLink = outerLink == null ? false : true
+    let tags: string[] = this.newsForm.controls["tags"].value.split(" ")
+
+    let tagsItems: TagItem[] = []
+    tags.forEach((tag: string) => {tagsItems.push(new TagItem(0, tag))})
+
+    let tagsForCreation: TagItem[] = []
+    let tagsForDeletion: TagItem[] = []
+
+    if (tagsItems.length != 0) {
+      tagsForCreation = tagsItems.filter((tagItem: TagItem) => {return !this.isContainTag(tagItem, this.tags)})
+      tagsForDeletion = this.tags.filter((tagItem: TagItem) => {return !this.isContainTag(tagItem, tagsItems)})
+    }
+
+    this.createTags(tagsForCreation)
+    this.deleteTags(tagsForDeletion)
+
+    console.log("tagsForCreation"," ",tagsForCreation)
+    console.log("tagsForDeletion"," ",tagsForDeletion)
+
 
     let body = {
       "title": title,
       "text": text,
       "pub_time": pubTime,
       "short_description": shortDescription,
-      "is_outer_link": isOuterLink,
-      "outer_link": outerLink
+      "is_external_link": isOuterLink,
+      "external_link": outerLink
     }
-    console.log(body)
 
     this.newsService.updateNewsById(this.newsItem.id, body).subscribe({
       next: (newsItem: NewsItem) => {console.log("News Changed")}

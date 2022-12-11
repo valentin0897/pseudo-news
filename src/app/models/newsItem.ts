@@ -5,8 +5,8 @@ export class NewsItem {
     pub_time: string
     text: string
     short_description: string
-    is_outer_link: boolean
-    outer_link: string
+    is_external_link: boolean
+    external_link: string
 
     tag_id: number
 
@@ -17,8 +17,8 @@ export class NewsItem {
             pub_time: string,
             text: string,
             short_description: string,
-            is_outer_link: boolean,
-            outer_link: string,
+            is_external_link: boolean,
+            external_link: string,
             tag_id: number){
 
         this.id = id
@@ -26,8 +26,8 @@ export class NewsItem {
         this.img_url = img_url
         this.pub_time = pub_time
         this.short_description = short_description 
-        this.is_outer_link = is_outer_link
-        this.outer_link = outer_link
+        this.is_external_link = is_external_link
+        this.external_link = external_link
         this.text = text
 
         this.tag_id = tag_id

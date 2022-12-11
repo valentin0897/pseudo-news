@@ -18,8 +18,12 @@
             <input class="input-text" formControlName="short_description" placeholder="Notes for this news" name="short_description" id="short_description" type="text">
         </div>
         <div class="field">
-            <label for="outer_link">Link to external website (Optional)</label>
-            <input class="input-text" formControlName="outer_link" placeholder="https://somelink.com" name="outer_link" id="outer_link" type="text">
+            <label for="external_link">Link to external website (Optional)</label>
+            <input class="input-text" formControlName="external_link" placeholder="https://somelink.com" name="external_link" id="external_link" type="text">
+        </div>
+        <div class="field">
+            <label for="tags">Tags (Optional)</label>
+            <input class="input-text" formControlName="tags" placeholder="business humor adult" name="tags" id="tags" type="text">
         </div>
         <div class="buttons">
             <a routerLink="/admin/news-constructor" class="button save-button" (click)="changeNews()" >Save</a>
