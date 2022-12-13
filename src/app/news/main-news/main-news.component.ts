@@ -46,14 +46,6 @@ export class MainNewsComponent implements OnInit {
     this.onScroll() // Only for mocking
   }
 
-  filterByTag(tag: string) {
-    let tagItem: TagItem
-    this.tagService.getTagByName(tag).subscribe((value: TagItem)=> {tagItem = value})
-    this.newsList = this.newsList.filter((news: NewsItem) => {
-      return news.tag_id != tagItem.id
-    })
-  }
-
   onScroll() {
     this.newsService.getRegularNews().subscribe(
       (news) => {for (let newsItem of news) this.secondaryNewsList.push(newsItem)}
