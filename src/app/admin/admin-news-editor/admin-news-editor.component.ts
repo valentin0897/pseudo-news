@@ -20,7 +20,7 @@ export class AdminNewsEditorComponent implements OnInit {
   selectedFile!: File
 
   newsItem$!: Observable<NewsItem>
-  newsItem: NewsItem = new NewsItem(0, "", "", "", "", "", false, "", 0)
+  newsItem: NewsItem = new NewsItem()
 
   tags$!: Observable<TagItem[]>
   tags: TagItem[] = []

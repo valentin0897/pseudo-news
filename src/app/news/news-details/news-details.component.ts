@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { NewsItem } from 'src/app/models/newsItem';
@@ -11,13 +11,20 @@ import { isSmallNews } from 'src/app/utilities/utility';
   host: {'class': 'news-details-wrapper'}
 })
 export class NewsDetailsComponent implements OnInit {
-  newsId: number = 0
-  mainNewsItem$!: Observable<NewsItem> 
-  newsTextSplitted: string[] = []
+  @ViewChild("textWrapper") textWrapper!: ElementRef
+
+  mainNewsItem$!: Observable<NewsItem>
+  mainNewsItem: NewsItem = new NewsItem()
 
   numberSmallNews = 8
   numberMediumNews = 4
   isSmallNews = isSmallNews
+
+  //_news-item-component.sass
+  newsItemHeight = 120
+  minimumNewsItems = 3
+
+  newsWithSameTag: NewsItem[] = []
 
   rightColumnNewsList: NewsItem[] = []
   secondaryNewsList: NewsItem[] = []
@@ -34,9 +41,33 @@ export class NewsDetailsComponent implements OnInit {
       })
     )
 
-    this.newsService.getMainNews().subscribe(
-      (news) => {for (let newsItem of news) this.rightColumnNewsList.push(newsItem)}
-    )
+    this.mainNewsItem$.subscribe({
+      next: (newsItem: NewsItem) => {
+        this.mainNewsItem = newsItem
+        this.rightColumnNewsList = []
+
+        this.injectHTML(this.mainNewsItem.text)
+        
+        let offsetHeight = this.textWrapper.nativeElement.offsetHeight
+        let amountOfNews = Math.floor(offsetHeight / this.newsItemHeight) + this.minimumNewsItems
+
+        this.newsService.getMainNews().subscribe(
+          (news) => {for (let newsItem of news) {
+            if (this.rightColumnNewsList.length >= amountOfNews){
+              break
+            } else {
+              this.rightColumnNewsList.push(newsItem)}
+            }
+          }
+        )
+      }
+    })
+
+
+  }
+
+  injectHTML(html: string) {
+    this.textWrapper.nativeElement.innerHTML = html
   }
 
   onScroll() {

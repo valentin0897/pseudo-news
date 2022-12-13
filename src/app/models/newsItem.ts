@@ -8,18 +8,15 @@ export class NewsItem {
     is_external_link: boolean
     external_link: string
 
-    tag_id: number
-
     constructor(
-            id: number,
-            title: string,
-            img_url: string,
-            pub_time: string,
-            text: string,
-            short_description: string,
-            is_external_link: boolean,
-            external_link: string,
-            tag_id: number){
+            id: number = 0,
+            title: string = "",
+            img_url: string = "",
+            pub_time: string = "",
+            text: string = "",
+            short_description: string = "",
+            is_external_link: boolean = false,
+            external_link: string = ""){
 
         this.id = id
         this.title = title
@@ -29,7 +26,5 @@ export class NewsItem {
         this.is_external_link = is_external_link
         this.external_link = external_link
         this.text = text
-
-        this.tag_id = tag_id
     }
 }

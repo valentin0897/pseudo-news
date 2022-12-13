@@ -1,17 +1,18 @@
 <div class="column-wrapper">
-    <div class="column news-details" *ngIf="mainNewsItem$ | async as mainNewsItem">
+    <div class="column news-details">
         <div class="cover">
             <img class="img" src="{{mainNewsItem.img_url}}" alt="news-image">
             <h2 class="cover-title">{{mainNewsItem.title}}</h2>
         </div>
-        <div class="text-wrapper" [innerHTML]="mainNewsItem.text">
+        <div class="text-wrapper" #textWrapper>
         </div>
     </div>
-    <div class="column">
+    <div class="column right-column">
         <app-news-item *ngFor="let newsItem of rightColumnNewsList; let i = index"
         [newsItem]="newsItem" class="small"></app-news-item>
     </div>
 </div>
+
 <div infinite-scroll (scrolled)="onScroll()" [infiniteScrollDistance]="0.5" class="secondary-news-list">
     <app-news-item [ngClass]="isSmallNews(i, this.numberMediumNews, this.numberSmallNews) ? 'small' : 'medium'" *ngFor="let newsItem of secondaryNewsList; let i = index"
         [newsItem]="newsItem"></app-news-item>
