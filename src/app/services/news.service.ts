@@ -15,6 +15,10 @@ export class NewsService {
 
   constructor(private http: HttpClient) { }
 
+  getAllNews(): Observable<NewsItem[]> {
+    return this.http.get(environment.host + "/news/") as Observable<NewsItem[]>
+  }
+
   getMainNews(): Observable<NewsItem[]> {
     return this.http.get(environment.host + "/news/main/") as Observable<NewsItem[]>
   }
@@ -29,7 +33,11 @@ export class NewsService {
 
   getTagsByNewsId(id: number): Observable<TagItem[]> {
     return this.http.get(environment.host + "/news/" + id.toString() + "/tags/") as Observable<TagItem[]>
-  } 
+  }
+  
+  getNewsByTagId(id: number): Observable<NewsItem[]> {
+    return this.http.get(environment.host + "/news/" + id.toString() + "/news/") as Observable<NewsItem[]>
+  }
 
   updateNewsById(id: number, body: any): Observable<NewsItem> {
     return this.http.patch(environment.host + "/news/" + id.toString(), body) as Observable<NewsItem>
