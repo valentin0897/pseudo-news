@@ -1,7 +1,8 @@
 
 <div class="constructor-news">
-    <h1>Main News Constructor</h1>
+    <h1>Main News</h1>
     <ul class="">
+        
         <li class="constructor-news-item" *ngFor="let newsItem of mainNewsList">
             <div class="info">
                 <p class="title">{{newsItem.title}}</p>
@@ -15,7 +16,8 @@
 </div>
 <div class="constructor-news">
     <ul class="">
-        <h1>Regular News Constructor</h1>
+        <h1>Regular News</h1>
+        <li class="add-news"><a class="button" [routerLink]="['/admin', 'news-editor', -1]"><fa-icon class="fa-lg" [icon]="faPlus "></fa-icon></a></li>
         <li class="constructor-news-item" *ngFor="let newsItem of regularNewsList">
             <div class="info">
                 <p class="title">{{newsItem.title}}</p>
