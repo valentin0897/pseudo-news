@@ -1,0 +1,7 @@
+<div class="secondary-news-list">
+    <app-news-item 
+    [ngClass]="isSmallNews(i, this.numberMediumNews, this.numberSmallNews) ? 'small' : 'medium'"
+     *ngFor="let newsItem of newsList; let i = index" 
+     [newsItem]="newsItem">
+    </app-news-item>
+</div>

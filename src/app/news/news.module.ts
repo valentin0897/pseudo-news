@@ -10,6 +10,7 @@ import { NewsDetailsComponent } from './news-details/news-details.component';
 import { NewsLayoutComponent } from './news-layout/news-layout.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { NewsFeedComponent } from './news-feed/news-feed.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
@@ -20,7 +21,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     MainNewsComponent,
     NewsItemComponent,
     NewsDetailsComponent,
-    NewsLayoutComponent
+    NewsLayoutComponent,
+    NewsFeedComponent
   ],
   imports: [
     BrowserModule,
