@@ -1,11 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SlicePipe } from '@angular/common';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { concat, Observable, switchMap } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { NewsItem } from 'src/app/models/newsItem';
 import { TagItem } from 'src/app/models/tagItem';
 import { NewsService } from 'src/app/services/news.service';
-import { isSmallNews } from 'src/app/utilities/utility';
 
 @Component({
   selector: 'app-news-details',
@@ -18,10 +17,6 @@ export class NewsDetailsComponent implements OnInit {
   mainNewsItem$!: Observable<NewsItem>
   mainNewsItem: NewsItem = new NewsItem()
   mainNewsTags: TagItem[] = []
-
-  numberSmallNews = 8
-  numberMediumNews = 4
-  isSmallNews = isSmallNews
 
   //_news-item-component.sass
   newsItemHeight = 120
@@ -53,7 +48,7 @@ export class NewsDetailsComponent implements OnInit {
         this.injectHTML(this.mainNewsItem.text)
         this.setAmountOfNewsInRightColumn()
 
-        if (this.amountOfNewsInRightColumn + this.numberMediumNews + this.numberSmallNews > this.newsList.length) {
+        if (this.amountOfNewsInRightColumn + 12 > this.newsList.length) {
           this.newsService.getAllNews().subscribe({
             next: (newsItems: NewsItem[]) => {
               for (let newsItem of newsItems) {
@@ -109,7 +104,11 @@ export class NewsDetailsComponent implements OnInit {
     this.textWrapper.nativeElement.innerHTML = html
   }
 
-  onScroll() {
+  updateFeed() {
     this.newsList.push(...this.newsList) //TODO make showedNews counter 
+  }
+
+  onScroll() {
+    this.updateFeed()
   }
 }

@@ -13,8 +13,4 @@
     </div>
 </div>
 
-<div infinite-scroll (scrolled)="onScroll()" [infiniteScrollDistance]="0.5" class="secondary-news-list">
-    <app-news-item [ngClass]="isSmallNews(i, this.numberMediumNews, this.numberSmallNews) ? 'small' : 'medium'"
-     *ngFor="let newsItem of newsList | slice : amountOfNewsInRightColumn; let i = index"
-        [newsItem]="newsItem"></app-news-item>
-</div>
+<app-news-feed [newsList]="newsList | slice : amountOfNewsInRightColumn" infinite-scroll (scrolled)="onScroll()" [infiniteScrollDistance]="0.5"></app-news-feed>
