@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Link } from 'src/app/models/link';
 import { SettingsItem } from 'src/app/models/settingsItem';
 import { SettingsService } from 'src/app/services/settings.service';
 
@@ -14,7 +13,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.settingsService.getActiveSettings().subscribe(
-      {next: (settings: SettingsItem) => {this.title = settings.header_title}}
+      {
+        next: (settings: SettingsItem) => {this.title = settings.header_title}
+      }
     )
   }
 }
